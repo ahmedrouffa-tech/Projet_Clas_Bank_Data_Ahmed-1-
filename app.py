@@ -99,12 +99,19 @@ if resources:
         # Standardisation
         input_scaled = scaler.transform(input_final)
 
-        # Prédiction
-        prediction = model.predict(input_scaled)[0]
-        probability = model.predict_proba(input_scaled)[0][1]
+       # Prédiction
+prediction = model.predict(input_scaled)[0]
+probability = model.predict_proba(input_scaled)[0][1]
 
-        st.subheader("Résultat de la prédiction :")
-        if prediction == 1:
-            st.success(f"🎉 Le client est susceptible de souscrire ! (Probabilité : {probability:.2%})")
-        else:
-            st.error(f"❌ Le client n'est pas susceptible de souscrire. (Probabilité de refus : {1 - probability:.2%})")
+st.subheader("Résultat de la prédiction :")
+
+if prediction == 1:
+    st.success(
+        f"🎉 Le client est susceptible de souscrire ! "
+        f"(Probabilité : {probability:.2%})"
+    )
+else:
+    st.error(
+        f"❌ Le client n'est pas susceptible de souscrire. "
+        f"(Probabilité de refus : {1 - probability:.2%})"
+    )
